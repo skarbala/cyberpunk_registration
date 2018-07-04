@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
 <head>
   <meta charset="UTF-8">
   <title>Cyberpunk registration</title>
@@ -7,6 +7,7 @@
         integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
         crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <style>
   body {
@@ -19,12 +20,17 @@
     border-radius: 0;
     background-color: transparent;
     color: #fdee06;
-    margin:20px auto;
+    margin: 20px auto;
     font-size: 1.2em;
   }
 
   input.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
     color: #645d06;
+    opacity: 1; /* Firefox */
+  }
+
+  input.form-control.has-error::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #fd3374;
     opacity: 1; /* Firefox */
   }
 
@@ -37,7 +43,12 @@
     background-color: transparent;
     color: #fdee06;
     border-bottom: 2px solid #fdee06;
+  }
 
+  .form-control.has-error {
+    outline: none;
+    background-color: transparent;
+    border-bottom: 2px solid #fd3374;
   }
 
   div.form-group {
@@ -52,11 +63,12 @@
     text-align: center;
     margin-bottom: 50px;
   }
-  button.btn{
+
+  button.btn {
     font-family: 'Audiowide', cursive;
     background-color: #ccbd06;
     color: #090c3b;
-    border-radius:0;
+    border-radius: 0;
     margin-top: 50px;
     -webkit-transition: all 200ms ease-in;
     -moz-transition: all 200ms ease-in;
@@ -64,34 +76,123 @@
     -o-transition: all 200ms ease-in;
     transition: all 200ms ease-in;
   }
-  button.btn:hover{
+
+  button.btn:hover {
     background-color: #fdee06;
     cursor: pointer;
+  }
 
+  div.success {
+    text-align: center;
+    color: #fdee06;
+    margin-top: 30px;
+  }
+
+  div.success p {
+    font-family: 'Audiowide', cursive;
+    font-size: 1.5em;
   }
 
 </style>
 <body>
-<div class="container">
+<div class="container" id="app">
   <div class="form-group col-md-6 offset-md-8">
     <h2 class="header">Sign Up for the future</h2>
-    <input type="email" class="form-control colorOne" placeholder="email">
-    <input type="text" class="form-control colorOne" placeholder="first name">
-    <input type="text" class="form-control colorOne" placeholder="second name">
-    <input type="password" class="form-control colorOne" placeholder="password">
-    <input type="password" class="form-control colorOne" placeholder="password repeat">
-    <button class="btn btn-block">Sign up</button>
+    <input type="email"
+           class="form-control colorOne"
+           placeholder="email"
+           v-model="email"
+           v-bind:class="{'has-error':checkError('email')}"
+           v-on:change="removeError('email')">
+    <input type="text"
+           class="form-control colorOne"
+           placeholder="first name"
+           v-model="name"
+           v-bind:class="{'has-error':checkError('name')}"
+           v-on:change="removeError('name')">
+    <input type="text"
+           class="form-control colorOne"
+           placeholder="second name"
+           v-model="surname"
+           v-bind:class="{'has-error':checkError('surname')}"
+           v-on:change="removeError('surname')">
+    <input type="password"
+           class="form-control colorOne"
+           placeholder="password"
+           v-model="password"
+           v-bind:class="{'has-error':checkError('password')}"
+           v-on:change="removeError('password')">
+    <input type="password"
+           class="form-control colorOne"
+           placeholder="password repeat"
+           v-model="passwordRepeat"
+           v-bind:class="{'has-error':checkError('passwordRepeat')}"
+           v-on:change="removeError('passwordRepeat')">
+    <button class="btn btn-block" v-on:click="checkForm">Sign up</button>
+    <div class="success"
+         v-if="success">
+      Welcome on board
+      <p>{{name +' '+ surname}}</p>
+    </div>
   </div>
 
 </div>
 
 </body>
-<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            email: null,
+            name: null,
+            surname: null,
+            password: null,
+            passwordRepeat: null,
+            errors: [],
+            success: false
+        },
+        methods: {
+            checkForm:
+                function (e) {
+                    this.errors = [];
+                    if (!this.email) {
+                        this.errors.push('email');
+                    }
+                    if (!this.name) {
+                        this.errors.push('name');
+                    }
+                    if (!this.surname) {
+                        this.errors.push('surname');
+                    }
+                    if (!this.password) {
+                        this.errors.push('password');
+                    }
+                    if (!this.passwordRepeat) {
+                        this.errors.push('passwordRepeat');
+                    }
+                    if (this.errors.length === 0) {
+                        this.success = true;
+                    }
+                    console.log(this.success);
+                },
+            checkError:
+                function (error) {
+                    return (this.errors.indexOf(error) > -1);
+                },
+            removeError:
+                function (toBeRemoved) {
+                    var index = this.errors.indexOf(toBeRemoved);
+                    if (index > -1) {
+                        this.errors.splice(index, 1);
+                    }
+                }
+
+        }
+    })
+</script>
 <link rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
       integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
       crossorigin="anonymous">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
-        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
-        crossorigin="anonymous"></script>
+
 </html>
