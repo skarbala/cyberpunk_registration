@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Cyberpunk registration</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+        integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+        crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Audiowide" rel="stylesheet">
+</head>
+<style>
+  body {
+    background: url("assets/img/cyberpunk.jpg");
+  }
+
+  input.form-control {
+    outline: none;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    color: #fdee06;
+    margin:20px auto;
+    font-size: 1.2em;
+  }
+
+  input.form-control::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+    color: #645d06;
+    opacity: 1; /* Firefox */
+  }
+
+  .form-control.colorOne {
+    border-bottom: 2px solid #807506;
+  }
+
+  input.form-control:focus {
+    outline: none;
+    background-color: transparent;
+    color: #fdee06;
+    border-bottom: 2px solid #fdee06;
+
+  }
+
+  div.form-group {
+    margin-top: 150px;
+    padding: 50px;
+    background-color: #090c3b;
+  }
+
+  .header {
+    color: #fdee06;
+    font-family: 'Audiowide', cursive;
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  button.btn{
+    font-family: 'Audiowide', cursive;
+    background-color: #ccbd06;
+    color: #090c3b;
+    border-radius:0;
+    margin-top: 50px;
+    -webkit-transition: all 200ms ease-in;
+    -moz-transition: all 200ms ease-in;
+    -ms-transition: all 200ms ease-in;
+    -o-transition: all 200ms ease-in;
+    transition: all 200ms ease-in;
+  }
+  button.btn:hover{
+    background-color: #fdee06;
+    cursor: pointer;
+
+  }
+
+</style>
+<body>
+<div class="container">
+  <div class="form-group col-md-6 offset-md-8">
+    <h2 class="header">Sign Up for the future</h2>
+    <input type="email" class="form-control colorOne" placeholder="email">
+    <input type="text" class="form-control colorOne" placeholder="first name">
+    <input type="text" class="form-control colorOne" placeholder="second name">
+    <input type="password" class="form-control colorOne" placeholder="password">
+    <input type="password" class="form-control colorOne" placeholder="password repeat">
+    <button class="btn btn-block">Sign up</button>
+  </div>
+
+</div>
+
+</body>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+<link rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+      integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+      crossorigin="anonymous">
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+        integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+        crossorigin="anonymous"></script>
+</html>
