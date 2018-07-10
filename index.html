@@ -10,6 +10,12 @@
   <script src="https://cdn.jsdelivr.net/npm/vue"></script>
 </head>
 <style>
+
+  @font-face {
+    font-family: Kill The Noise;
+    src: url("assets/kill_the_noise.otf") format("opentype");
+  }
+
   body {
     background: url("assets/img/cyberpunk.jpg");
   }
@@ -59,13 +65,20 @@
 
   .header {
     color: #fdee06;
-    font-family: 'Audiowide', cursive;
+    font-family: 'Kill The Noise', cursive;
     text-align: center;
     margin-bottom: 50px;
+    font-size: 50px;
+  }
+
+  .header span {
+    color: #fd3374;
+    font-size: 60px;
+    margin: 0 15px;
   }
 
   button.btn {
-    font-family: 'Audiowide', cursive;
+    font-family: 'Kill The Noise', cursive;
     background-color: #ccbd06;
     color: #090c3b;
     border-radius: 0;
@@ -75,6 +88,7 @@
     -ms-transition: all 200ms ease-in;
     -o-transition: all 200ms ease-in;
     transition: all 200ms ease-in;
+    font-size: 35px;
   }
 
   button.btn:hover {
@@ -89,15 +103,15 @@
   }
 
   div.success p {
-    font-family: 'Audiowide', cursive;
-    font-size: 1.5em;
+    font-family: 'Kill The Noise', cursive;
+    font-size: 3em;
   }
 
 </style>
 <body>
 <div class="container" id="app">
   <div class="form-group col-md-6 offset-md-8">
-    <h2 class="header">Sign Up for the future</h2>
+    <h2 class="header">Sign Up for the <span>future</span></h2>
     <input type="email"
            class="form-control colorOne"
            placeholder="email"
